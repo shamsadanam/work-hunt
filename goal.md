@@ -1,0 +1,7 @@
+- yarn --> failed
+- React
+  -- Routes
+  -- Memo
+- Redux
+  -- Redux Tool Kit --> Endgame
+- TailwindCSS
