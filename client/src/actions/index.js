@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_OUT, REG_REC, REG_APP } from "./types";
+import { SIGN_IN, SIGN_OUT, REG_REC, REG_APP, REG_CHK } from "./types";
 import workhunt from "../apis/workhunt";
 import { _checkEmail } from "../helpers";
 
@@ -13,6 +13,17 @@ export const signOutAction = () => {
   return {
     type: SIGN_OUT,
   };
+};
+
+export const checkRegistration = () => async (dispatch, getState) => {
+  let checkEmail = false;
+  if (getState().auth.currentUser) {
+    checkEmail = await _checkEmail(getState().auth.currentUser.email);
+  }
+  dispatch({
+    type: REG_CHK,
+    payload: checkEmail ? true : false,
+  });
 };
 
 export const registerRecruiter = (userData) => async (dispatch, getState) => {

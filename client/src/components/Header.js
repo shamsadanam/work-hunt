@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import GoogleAuth from "./GoogleAuth";
+import { connect } from "react-redux";
 
-export default function Example() {
+const Header = ({ isSignedIn }) => {
   return (
     <Popover className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -32,12 +33,12 @@ export default function Example() {
             >
               Home
             </Link>
-            <Link
+            {/* <Link
               to="/register"
               className="text-base font-medium text-gray-500 hover:text-gray-900"
             >
               Register
-            </Link>
+            </Link> */}
             {/* <Link
               to="/register/applicant"
               className="text-base font-medium text-gray-500 hover:text-gray-900"
@@ -56,11 +57,25 @@ export default function Example() {
             >
               Feeds
             </Link>
+            {isSignedIn && (
+              <Link
+                to="/profile"
+                className="text-base font-medium text-gray-500 hover:text-gray-900"
+              >
+                Profile
+              </Link>
+            )}
             <Link
-              to="/profile"
+              to="/"
               className="text-base font-medium text-gray-500 hover:text-gray-900"
             >
-              Profile
+              About
+            </Link>
+            <Link
+              to="/"
+              className="text-base font-medium text-gray-500 hover:text-gray-900"
+            >
+              Contact Us
             </Link>
           </Popover.Group>
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
@@ -139,4 +154,9 @@ export default function Example() {
       </Transition>
     </Popover>
   );
-}
+};
+
+const mapStateToProps = (state) => {
+  return { isSignedIn: state.auth.isSignedIn };
+};
+export default connect(mapStateToProps, null)(Header);

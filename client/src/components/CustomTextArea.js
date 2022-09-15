@@ -12,7 +12,7 @@ const CustomInput = ({ label, ...props }) => {
       <label className={formLabelClasses} htmlFor={label}>
         {label}
       </label>
-      <input
+      <textarea
         {...props}
         {...field}
         className={`${formFieldClasses} ${

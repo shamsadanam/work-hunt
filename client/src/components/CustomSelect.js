@@ -4,7 +4,7 @@ const formLabelClasses = "py-2";
 const formFieldClasses = "border-2 border-stone-600 rounded-lg p-2";
 const inputErr = "border-rose-600";
 
-const CustomInput = ({ label, ...props }) => {
+const CustomSelect = ({ label, ...props }) => {
   const [field, meta] = useField(props);
 
   return (
@@ -12,7 +12,7 @@ const CustomInput = ({ label, ...props }) => {
       <label className={formLabelClasses} htmlFor={label}>
         {label}
       </label>
-      <input
+      <select
         {...props}
         {...field}
         className={`${formFieldClasses} ${
@@ -24,4 +24,4 @@ const CustomInput = ({ label, ...props }) => {
   );
 };
 
-export default CustomInput;
+export default CustomSelect;
