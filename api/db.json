@@ -1,28 +1,3 @@
 {
-  "recruiters": [
-    {
-      "firstName": "Red",
-      "lastName": "Primary",
-      "email": "reeddhy@gmail.com",
-      "company": "Color",
-      "jobtitle": "",
-      "location": "",
-      "industrytype": "",
-      "companydescription": "",
-      "recruiterId": "111006092154750853505",
-      "id": 1
-    },
-    {
-      "firstName": "Blue",
-      "lastName": "Primary",
-      "email": "shamsad.anam@gmail.com",
-      "company": "Color",
-      "jobtitle": "",
-      "location": "",
-      "industrytype": "",
-      "companydescription": "",
-      "recruiterId": "108605389506640529232",
-      "id": 2
-    }
-  ]
+  "recruiters": []
 }
