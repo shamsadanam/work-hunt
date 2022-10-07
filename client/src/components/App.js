@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./LandingPage";
 import Profile from "./Profile";
 import Register from "./register/Register";
-import RegisterApplicant from "./register/RegisterApplicant";
-import RegisterRecruiter from "./register/RegisterRecruiter";
+import RegisterApplicant from "./register/applicant/RegisterApplicant";
+import RegisterRecruiter from "./register/recruiter/RegisterRecruiter";
 import Feeds from "./Feeds";
 
 const App = () => {
