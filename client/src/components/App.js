@@ -1,11 +1,11 @@
 import Header from "./Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LandingPage from "./routes/LandingPage";
-import Profile from "./routes/Profile";
-import Register from "./routes/Register";
-import RegisterApplicant from "./routes/RegisterApplicant";
-import RegisterRecruiter from "./routes/RegisterRecruiter";
-import Feeds from "./routes/Feeds";
+import LandingPage from "./LandingPage";
+import Profile from "./Profile";
+import Register from "./register/Register";
+import RegisterApplicant from "./register/RegisterApplicant";
+import RegisterRecruiter from "./register/RegisterRecruiter";
+import Feeds from "./Feeds";
 
 const App = () => {
   return (

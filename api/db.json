@@ -1,3 +1,16 @@
 {
-  "recruiters": []
+  "recruiters": [
+    {
+      "firstName": "Blue",
+      "lastName": "Primary",
+      "email": "shamsad.seopage1@gmail.com",
+      "company": "Colors",
+      "jobTitle": "Being a primary color",
+      "location": "Everywhere",
+      "industryType": "private",
+      "companyDesc": "You know...",
+      "recruiterId": "112850125365511589998",
+      "id": 1
+    }
+  ]
 }
