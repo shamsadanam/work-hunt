@@ -6,17 +6,8 @@ import { Formik, Form } from "formik";
 import PersonalInformation from "./PersonalInformation";
 import CompanyInformation from "./CompanyInformation";
 import CompanyDescription from "./CompanyDescription";
-import CustomInput from "../../CustomInput";
-import CustomSelect from "../../CustomSelect";
-import CustomTextArea from "../../CustomTextArea";
-import CustomLocation from "../../CustomLocation";
-import { recruiterSchema } from "../../../schemas";
 
-const formClasses =
-  "w-96 mx-auto my-5 p-5 border-2 rounded-lg shadow-lg flex flex-col justify-center bg-stone-200";
-const formBtn =
-  "p-3 my-5 border-2 rounded-xl bg-stone-800 text-stone-100 hover:bg-stone-900";
-const formBtnDisabled = `${formBtn} opacity-50`;
+import { recruiterSchema } from "../../../schemas";
 
 const RegisterRecruiter = ({ isSignedIn, currentUser, registerRecruiter }) => {
   const navigate = useNavigate();
