@@ -5,7 +5,7 @@ const formClasses =
 const formBtn =
   "p-3 my-5 border-2 rounded-xl bg-stone-800 text-stone-100 hover:bg-stone-900";
 
-const PersonalInformation = () => {
+const PersonalInformation = ({ page, setPage }) => {
   return (
     <div className={formClasses}>
       <CustomInput
@@ -23,7 +23,9 @@ const PersonalInformation = () => {
         name="jobTitle"
         placeholder="Enter your job title/post/designation"
       />
-      <button className={formBtn}>Next</button>
+      <button className={formBtn} onClick={setPage(++page)}>
+        Next
+      </button>
     </div>
   );
 };

@@ -7,7 +7,8 @@ const formBtnLeft =
   "p-3 my-5 border-2 rounded-xl bg-stone-500 text-stone-100 hover:bg-stone-700 w-2/5";
 const formBtnRight =
   "p-3 my-5 border-2 rounded-xl bg-stone-800 text-stone-100 hover:bg-stone-900 w-2/5 ml-auto";
-const CompanyInformation = () => {
+
+const CompanyInformation = ({ page, setPage }) => {
   return (
     <div className={formClasses}>
       <CustomInput
@@ -26,8 +27,12 @@ const CompanyInformation = () => {
         placeholder="Enter Your Company Location"
       />
       <div className="flex w-full">
-        <button className={formBtnLeft}>Previous</button>
-        <button className={formBtnRight}>Next</button>
+        <button className={formBtnLeft} onClick={setPage(--page)}>
+          Previous
+        </button>
+        <button className={formBtnRight} onClick={setPage(++page)}>
+          Next
+        </button>
       </div>
     </div>
   );

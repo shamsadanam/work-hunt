@@ -9,7 +9,7 @@ const formBtnRight =
   "p-3 my-5 border-2 rounded-xl bg-stone-800 text-stone-100 hover:bg-stone-900 w-2/5 ml-auto";
 const formBtnDisabled = `${formBtnRight} opacity-50`;
 
-const CompanyDescription = () => {
+const CompanyDescription = ({ page, setPage }) => {
   const [meta] = useField();
   return (
     <div className={formClasses}>
@@ -20,7 +20,9 @@ const CompanyDescription = () => {
         placeholder="Write about your compnay in 250 words"
       />
       <div className="flex">
-        <button className={formBtnLeft}>Previous</button>
+        <button className={formBtnLeft} onClick={setPage(--page)}>
+          Previous
+        </button>
         <button
           disabled={meta.isSubmitting}
           type="submit"

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerRecruiter } from "../../../actions";
@@ -11,6 +11,12 @@ import { recruiterSchema } from "../../../schemas";
 
 const RegisterRecruiter = ({ isSignedIn, currentUser, registerRecruiter }) => {
   const navigate = useNavigate();
+  const [page, setPage] = useState(0);
+  const formSteps = [
+    <PersonalInformation page={page} setPage={setPage} />,
+    <CompanyInformation page={page} setPage={setPage} />,
+    <CompanyDescription page={page} setPage={setPage} />,
+  ];
 
   useEffect(() => {
     !isSignedIn && navigate("/");
@@ -36,14 +42,8 @@ const RegisterRecruiter = ({ isSignedIn, currentUser, registerRecruiter }) => {
           navigate("/feeds");
         }}
       >
-        {({ isSubmitting }) => {
-          return (
-            <Form>
-              <PersonalInformation />
-              <CompanyInformation />
-              <CompanyDescription />
-            </Form>
-          );
+        {() => {
+          return <Form>{formSteps[page]}</Form>;
         }}
       </Formik>
     </div>
