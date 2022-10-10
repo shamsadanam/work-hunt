@@ -148,6 +148,9 @@ const Header = ({ isSignedIn }) => {
                   Profile
                 </Link>
               </div>
+              <div className="flex justify-center">
+                <GoogleAuth />
+              </div>
             </div>
           </div>
         </Popover.Panel>
