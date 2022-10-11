@@ -9,7 +9,12 @@ import CompanyDescription from "./CompanyDescription";
 
 import { recruiterSchema } from "../../../schemas";
 
-const RegisterRecruiter = ({ isSignedIn, currentUser, registerRecruiter }) => {
+const RegisterRecruiter = ({
+  isSignedIn,
+  currentUser,
+  registerRecruiter,
+  id,
+}) => {
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const formSteps = [
@@ -17,6 +22,27 @@ const RegisterRecruiter = ({ isSignedIn, currentUser, registerRecruiter }) => {
     <CompanyInformation page={page} setPage={setPage} />,
     <CompanyDescription page={page} setPage={setPage} />,
   ];
+
+  const formBtnLeft =
+    "p-3 my-5 border-2 rounded-xl bg-stone-500 text-stone-100 hover:bg-stone-700 w-2/5";
+  const formBtnRight =
+    "p-3 my-5 border-2 rounded-xl bg-stone-800 text-stone-100 hover:bg-stone-900 w-2/5 ml-auto";
+
+  const renderForm = (page) => {
+    switch (page) {
+      case 0: {
+        return <PersonalInformation />;
+      }
+      case 1: {
+        return <CompanyInformation />;
+      }
+      case 2: {
+        return <CompanyDescription />;
+      }
+      default:
+        <PersonalInformation />;
+    }
+  };
 
   useEffect(() => {
     !isSignedIn && navigate("/");
@@ -43,7 +69,26 @@ const RegisterRecruiter = ({ isSignedIn, currentUser, registerRecruiter }) => {
         }}
       >
         {() => {
-          return <Form>{formSteps[page]}</Form>;
+          return (
+            <Form>
+              {renderForm(page)}
+              <div className="flex w-full">
+                <button
+                  className={formBtnLeft}
+                  onClick={(page) => setPage(--page)}
+                >
+                  Previous
+                </button>
+                <button
+                  className={formBtnRight}
+                  onClick={(page) => setPage(++page)}
+                >
+                  Next
+                </button>
+              </div>
+              <div className={id === "yes" ? "d-block" : "d-none"}></div>
+            </Form>
+          );
         }}
       </Formik>
     </div>

@@ -23,7 +23,7 @@ const PersonalInformation = ({ page, setPage }) => {
         name="jobTitle"
         placeholder="Enter your job title/post/designation"
       />
-      <button className={formBtn} onClick={setPage(++page)}>
+      <button className={formBtn} onClick={() => setPage(++page)}>
         Next
       </button>
     </div>

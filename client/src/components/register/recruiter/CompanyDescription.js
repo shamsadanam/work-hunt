@@ -20,7 +20,7 @@ const CompanyDescription = ({ page, setPage }) => {
         placeholder="Write about your compnay in 250 words"
       />
       <div className="flex">
-        <button className={formBtnLeft} onClick={setPage(--page)}>
+        <button className={formBtnLeft} onClick={() => setPage(--page)}>
           Previous
         </button>
         <button
