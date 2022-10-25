@@ -9,24 +9,38 @@ import CompanyDescription from "./CompanyDescription";
 
 import { recruiterSchema } from "../../../schemas";
 
-const RegisterRecruiter = ({
-  isSignedIn,
-  currentUser,
-  registerRecruiter,
-  id,
-}) => {
+const formClasses =
+  "w-96 h-96 mx-auto my-5 p-5 border-2 rounded-lg shadow-lg flex flex-col justify-center bg-stone-200";
+
+const formBtn = "p-3 my-5 border-2 rounded-xl w-1/2";
+
+const formBtnLeft = `${formBtn} bg-stone-600 text-stone-100 hover:bg-stone-700`;
+
+const formBtnRight = `${formBtn} bg-stone-800 text-stone-100 hover:bg-stone-900 ml-auto`;
+const formBtnDisabled = `${formBtnRight} opacity-50`;
+
+const RegisterRecruiter = ({ isSignedIn, currentUser, registerRecruiter }) => {
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
-  const formSteps = [
-    <PersonalInformation page={page} setPage={setPage} />,
-    <CompanyInformation page={page} setPage={setPage} />,
-    <CompanyDescription page={page} setPage={setPage} />,
-  ];
 
-  const formBtnLeft =
-    "p-3 my-5 border-2 rounded-xl bg-stone-500 text-stone-100 hover:bg-stone-700 w-2/5";
-  const formBtnRight =
-    "p-3 my-5 border-2 rounded-xl bg-stone-800 text-stone-100 hover:bg-stone-900 w-2/5 ml-auto";
+  useEffect(() => {
+    console.log(page);
+  }, [page]);
+
+  useEffect(() => {
+    !isSignedIn && navigate("/");
+  });
+
+  const nextForm = (errors) => {
+    if (!errors) {
+      setPage((currentPage) =>
+        currentPage == 2 ? currentPage : ++currentPage
+      );
+    }
+  };
+  const previousForm = () => {
+    setPage((currentPage) => (currentPage == 0 ? currentPage : --currentPage));
+  };
 
   const renderForm = (page) => {
     switch (page) {
@@ -43,11 +57,6 @@ const RegisterRecruiter = ({
         <PersonalInformation />;
     }
   };
-
-  useEffect(() => {
-    !isSignedIn && navigate("/");
-  });
-
   return (
     <div>
       <Formik
@@ -68,25 +77,41 @@ const RegisterRecruiter = ({
           navigate("/feeds");
         }}
       >
-        {() => {
+        {({ isSubmitting, errors }) => {
           return (
             <Form>
-              {renderForm(page)}
-              <div className="flex w-full">
-                <button
-                  className={formBtnLeft}
-                  onClick={(page) => setPage(--page)}
-                >
-                  Previous
-                </button>
-                <button
-                  className={formBtnRight}
-                  onClick={(page) => setPage(++page)}
-                >
-                  Next
-                </button>
+              <div className={formClasses}>
+                {renderForm(page)}
+                <div className="flex gap-3">
+                  <button
+                    type="button"
+                    className={`${formBtnLeft} ${
+                      page === 0 ? "cursor-not-allowed" : ""
+                    }`}
+                    onClick={previousForm}
+                    disabled={page === 0 ? true : false}
+                  >
+                    Back
+                  </button>
+                  {page < 2 && (
+                    <button
+                      type="submit"
+                      className={formBtnRight}
+                      onClick={() => nextForm(errors)}
+                    >
+                      Next
+                    </button>
+                  )}
+                  {page === 2 && (
+                    <button
+                      type="submit"
+                      className={isSubmitting ? formBtnDisabled : formBtnRight}
+                    >
+                      Submit
+                    </button>
+                  )}
+                </div>
               </div>
-              <div className={id === "yes" ? "d-block" : "d-none"}></div>
             </Form>
           );
         }}
@@ -105,3 +130,18 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, { registerRecruiter })(
   RegisterRecruiter
 );
+
+{
+  /* <div className="flex">
+<button className={formBtnLeft} onClick={() => setPage(--page)}>
+  Previous
+</button>
+<button
+  disabled={meta.isSubmitting}
+  type="submit"
+  className={meta.isSubmitting ? formBtnDisabled : formBtnRight}
+>
+  Submit
+</button>
+</div> */
+}

@@ -1,12 +1,9 @@
 import CustomInput from "../../CustomInput";
 import CustomSelect from "../../CustomSelect";
 
-const formClasses =
-  "w-96 mx-auto my-5 p-5 border-2 rounded-lg shadow-lg flex flex-col justify-center bg-stone-200";
-
-const CompanyInformation = ({ page, setPage }) => {
+const CompanyInformation = () => {
   return (
-    <div className={formClasses}>
+    <>
       <CustomInput
         label="Company"
         name="company"
@@ -22,7 +19,7 @@ const CompanyInformation = ({ page, setPage }) => {
         name="location"
         placeholder="Enter Your Company Location"
       />
-    </div>
+    </>
   );
 };
 
